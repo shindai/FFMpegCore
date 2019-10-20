@@ -21,6 +21,7 @@ namespace FFMpegCore.Enums
             switch (type)
             {
                 case VideoCodec.LibX264: return Mp4;
+                case VideoCodec.LibX265: return Mp4;
                 case VideoCodec.LibVpx: return WebM;
                 case VideoCodec.LibTheora: return Ogv;
                 case VideoCodec.MpegTs: return Ts;

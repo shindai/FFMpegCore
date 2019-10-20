@@ -297,13 +297,23 @@ namespace FFMpegCore.FFMPEG
 
             var firstImage = images.First();
 
+            if(!images.All(x => x.Extension == firstImage.Extension))
+            {
+                throw new ArgumentException("all images should have the same file extension.");
+            }
+
+            if (!images.All(x => x.Width == firstImage.Width && x.Height == firstImage.Height))
+            {
+                throw new ArgumentException("all images should have the same image size (width/height).");
+            }
+
             var container = new ArgumentContainer(
                 new FrameRateArgument(frameRate),
                 new SizeArgument(firstImage.Width, firstImage.Height),
                 new StartNumberArgument(0),
-                new InputArgument($"{firstImage.Directory}{Path.DirectorySeparatorChar}%09d.png"),
+                new InputArgument($"{firstImage.Directory}{Path.DirectorySeparatorChar}%09d" + firstImage.Extension),
                 new FrameOutputCountArgument(images.Length),
-                new VideoCodecArgument(VideoCodec.LibX264),
+                new VideoCodecArgument(VideoCodec.LibX265),
                 new OutputArgument(output)
             );
 

@@ -3,6 +3,7 @@
     public enum VideoCodec
     {
         LibX264,
+        LibX265,
         LibVpx,
         LibTheora,
         Png,

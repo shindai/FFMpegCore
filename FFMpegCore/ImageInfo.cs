@@ -18,11 +18,6 @@ namespace FFMpegCore
         /// <param name="fileInfo">Image file information.</param>
         public ImageInfo(FileInfo fileInfo)
         {
-            if (!fileInfo.Extension.ToLower().EndsWith(FileExtension.Png))
-            {
-                throw new Exception("Image joining currently suppors only .png file types");
-            }
-
             fileInfo.Refresh();
 
             this.Size = fileInfo.Length / (1024 * 1024);
@@ -40,8 +35,6 @@ namespace FFMpegCore
                 throw new ArgumentException($"Input file {fileInfo.FullName} does not exist!");
 
             _file = fileInfo;
-
-
         }
 
         /// <summary>
